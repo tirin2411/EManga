@@ -1,0 +1,65 @@
+﻿@model ViewModels.Catalog.Order.OrderCreate
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Tạo mới người dùng</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Tạo mới người dùng</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <a class="btn btn-success" asp-action="Index" asp-controller="Order">Về danh sách</a>
+        </div>
+
+        <div class="card-body">
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="UserId" class="control-label"></label>
+                        <input asp-for="UserId" class="form-control" />
+                        <span asp-validation-for="UserId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NguoiNhan" class="control-label"></label>
+                        <input asp-for="NguoiNhan" class="form-control" />
+                        <span asp-validation-for="NguoiNhan" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DiaChiNhan" class="control-label"></label>
+                        <input asp-for="DiaChiNhan" class="form-control" />
+                        <span asp-validation-for="DiaChiNhan" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SDT" class="control-label"></label>
+                        <input asp-for="SDT" class="form-control" />
+                        <span asp-validation-for="SDT" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MangaId" class="control-label"></label>
+                        <input asp-for="MangaId" class="form-control" />
+                        <span asp-validation-for="MangaId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Gia" class="control-label"></label>
+                        <input asp-for="Gia" class="form-control" />
+                        <span asp-validation-for="Gia" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Soluongdat" class="control-label"></label>
+                        <input asp-for="Soluongdat" class="form-control" />
+                        <span asp-validation-for="Soluongdat" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

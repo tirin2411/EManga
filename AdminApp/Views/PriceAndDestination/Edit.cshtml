@@ -1,0 +1,43 @@
+﻿@model ViewModels.Shipment.ShippingPriceUpdate
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Cập nhật</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Cập nhật</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <a class="btn btn-success" asp-action="Index" asp-controller="PriceAndDestination">Về danh sách</a>
+        </div>
+
+        <div class="card-body">
+            <div class="col-md-12">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <input asp-for="Id" type="hidden" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Note" class="control-label"></label>
+                        <input asp-for="Note" class="form-control" />
+                        <span asp-validation-for="Note" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ShippingPrice" class="control-label"></label>
+                        <input asp-for="ShippingPrice" class="form-control" />
+                        <span asp-validation-for="ShippingPrice" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

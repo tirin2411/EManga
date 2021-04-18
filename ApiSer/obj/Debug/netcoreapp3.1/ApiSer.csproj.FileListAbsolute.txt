@@ -1,0 +1,16 @@
+O:\Projects\AAA\ApiSer\bin\Debug\netcoreapp3.1\ApiSer.deps.json
+O:\Projects\AAA\ApiSer\bin\Debug\netcoreapp3.1\ApiSer.dll
+O:\Projects\AAA\ApiSer\bin\Debug\netcoreapp3.1\Data.dll
+O:\Projects\AAA\ApiSer\bin\Debug\netcoreapp3.1\ViewModels.dll
+O:\Projects\AAA\ApiSer\bin\Debug\netcoreapp3.1\ViewModels.pdb
+O:\Projects\AAA\ApiSer\bin\Debug\netcoreapp3.1\Data.pdb
+O:\Projects\AAA\ApiSer\obj\Debug\netcoreapp3.1\ApiSer.csprojAssemblyReference.cache
+O:\Projects\AAA\ApiSer\obj\Debug\netcoreapp3.1\ApiSer.AssemblyInfoInputs.cache
+O:\Projects\AAA\ApiSer\obj\Debug\netcoreapp3.1\ApiSer.AssemblyInfo.cs
+O:\Projects\AAA\ApiSer\obj\Debug\netcoreapp3.1\ApiSer.csproj.CopyComplete
+O:\Projects\AAA\ApiSer\bin\Debug\netcoreapp3.1\ApiSer.pdb
+O:\Projects\AAA\ApiSer\bin\Debug\netcoreapp3.1\Utilities.dll
+O:\Projects\AAA\ApiSer\bin\Debug\netcoreapp3.1\Utilities.pdb
+O:\Projects\AAA\ApiSer\obj\Debug\netcoreapp3.1\ApiSer.csproj.CoreCompileInputs.cache
+O:\Projects\AAA\ApiSer\obj\Debug\netcoreapp3.1\ApiSer.dll
+O:\Projects\AAA\ApiSer\obj\Debug\netcoreapp3.1\ApiSer.pdb

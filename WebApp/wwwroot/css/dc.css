@@ -1,0 +1,20 @@
+﻿/*o mau ne*/
+.group-link .news .nav-link {
+    border-bottom: solid 4px #ff0000;
+}
+
+.group-link .blogs .nav-link {
+    border-bottom: solid 4px #ff6a00;
+}
+
+.group-link .gioithieu .nav-link {
+    border-bottom: solid 4px #ffd800;
+}
+
+.group-link .lienhe .nav-link {
+    border-bottom: solid 4px #b6ff00;
+}
+
+.group-link .hangqt .nav-link {
+    border-bottom: solid 4px #4cff00;
+}

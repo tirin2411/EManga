@@ -1,0 +1,56 @@
+﻿@model ViewModels.Catalog.Mangas.DiscountMnRequest
+
+@{
+    ViewData["Title"] = "DiscountAssign";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Ưu đãi</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Ưu đãi</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <a class="btn btn-success" asp-action="Index" asp-controller="Manga">Về danh sách</a>
+        </div>
+
+        <div class="card-body">
+            <form asp-action="DiscountAssign">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Danh sách khuyến mãi
+                            </th>
+                            <th>
+                                Chọn
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 0; i < Model.Discounts.Count; i++)
+                        {
+                            <tr class="form-group">
+                                <td>
+                                    @Model.Discounts[i].Name
+                                </td>
+                                <td>
+                                    <input type="checkbox" asp-for="Discounts[i].Selected" />
+                                    <input type="hidden" asp-for="Discounts[i].Id" />
+                                    <input type="hidden" asp-for="Discounts[i].Name" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,122 @@
+﻿@model ViewModels.Catalog.Mangas.MangaCreateRequest
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#rtxContent'), {
+                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(err => {
+                console.error(err.stack);
+            });
+    </script>
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Thêm mới sản phẩm</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Thêm mới sản phẩm</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <a class="btn btn-success" asp-action="Index" asp-controller="Manga">Về danh sách</a>
+        </div>
+
+        <div class="card-body">
+            <div class="col-md-12">
+                <form asp-action="Create" enctype="multipart/form-data" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Ten" class="control-label"></label>
+                        <input asp-for="Ten" class="form-control" />
+                        <span asp-validation-for="Ten" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Meta" class="control-label"></label>
+                        <input asp-for="Meta" class="form-control" />
+                        <span asp-validation-for="Meta" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Gia" class="control-label"></label>
+                        <input asp-for="Gia" class="form-control" />
+                        <span asp-validation-for="Gia" class="text-danger"></span>
+                    </div>
+                    @*<div class="form-group">
+            <label asp-for="Giagoc" class="control-label"></label>
+            <input asp-for="Giagoc" class="form-control" />
+            <span asp-validation-for="Giagoc" class="text-danger"></span>
+        </div>*@
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Anhien" /> @Html.DisplayNameFor(model => model.Anhien)
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NgonnguId" class="control-label"></label>
+                        <input asp-for="NgonnguId" class="form-control" />
+                        <span asp-validation-for="NgonnguId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SoLuong" class="control-label"></label>
+                        <input asp-for="SoLuong" class="form-control" />
+                        <span asp-validation-for="SoLuong" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TinhtrangMn" class="control-label"></label>
+                        <input asp-for="TinhtrangMn" class="form-control" />
+                        <span asp-validation-for="TinhtrangMn" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Mota" class="control-label"></label>
+                        <textarea asp-for="Mota" id="rtxContent" class="form-control"></textarea>
+                        <span asp-validation-for="Mota" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Tacgia" class="control-label"></label>
+                        <input asp-for="Tacgia" class="form-control" />
+                        <span asp-validation-for="Tacgia" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NamXB" class="control-label"></label>
+                        <input asp-for="NamXB" class="form-control" />
+                        <span asp-validation-for="NamXB" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Sotrang" class="control-label"></label>
+                        <input asp-for="Sotrang" class="form-control" />
+                        <span asp-validation-for="Sotrang" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TheloaiId" class="control-label"></label>
+                        <input asp-for="TheloaiId" class="form-control" />
+                        <span asp-validation-for="TheloaiId" class="text-danger"></span>
+                    </div>
+                    @*<div class="form-group">
+            <label asp-for="UserId" class="control-label"></label>
+            <input asp-for="UserId" class="form-control" />
+            <span asp-validation-for="UserId" class="text-danger"></span>
+        </div>*@
+                    <div class="form-group">
+                        <label asp-for="HinhNho" class="control-label"></label>
+                        <input type="file" asp-for="HinhNho" class="form-control" />
+                        <span asp-validation-for="HinhNho" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

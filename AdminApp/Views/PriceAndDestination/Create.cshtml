@@ -1,0 +1,90 @@
+﻿@model ViewModels.Shipment.ShippingPriceRequest
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script src="~/js/local.js"></script>
+}
+<div class="container-fluid">
+    <h1 class="mt-4">Thêm mới khu vực vận chuyển</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Thêm mới khu vực vận chuyển</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <a class="btn btn-success" asp-action="Index" asp-controller="PriceAndDestination">Về danh sách</a>
+        </div>
+
+        <div class="card-body">
+            <div class="col-md-12">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    @*<div class="form-group">
+                            <label asp-for="ProvinceId" class="control-label"></label>
+                            <input asp-for="ProvinceId" class="form-control" />
+                            <span asp-validation-for="ProvinceId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ProvinceName" class="control-label"></label>
+                            <input asp-for="ProvinceName" class="form-control" />
+                            <span asp-validation-for="ProvinceName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DistrictId" class="control-label"></label>
+                            <input asp-for="DistrictId" class="form-control" />
+                            <span asp-validation-for="DistrictId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DistrictName" class="control-label"></label>
+                            <input asp-for="DistrictName" class="form-control" />
+                            <span asp-validation-for="DistrictName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="WardId" class="control-label"></label>
+                            <input asp-for="WardId" class="form-control" />
+                            <span asp-validation-for="WardId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="WardName" class="control-label"></label>
+                            <input asp-for="WardName" class="form-control" />
+                            <span asp-validation-for="WardName" class="text-danger"></span>
+                        </div>*@
+                    <div class="form-group">
+                        <label class="small mb-1">Tỉnh Thành: </label>
+                        <select id="Province" asp-for="ProvinceId" asp-items="@ViewBag.Provinces" class="form-control col-md-4">
+                            <option >---Tỉnh Thành---</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1">Quận Huyện: </label>
+                        <select id="district" asp-for="DistrictId" class="form-control col-md-3">
+                            <option >---Quận Huyện---</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1">Xã Phường: </label>
+                        <select id="ward" asp-for="WardId" class="form-control col-md-3">
+                            <option >---Xã Phường---</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Note" class="control-label"></label>
+                        <input asp-for="Note" class="form-control" />
+                        <span asp-validation-for="Note" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ShippingPrice" class="control-label"></label>
+                        <input asp-for="ShippingPrice" class="form-control" />
+                        <span asp-validation-for="ShippingPrice" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

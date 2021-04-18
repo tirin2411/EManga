@@ -1,0 +1,99 @@
+﻿@using ViewModels.Catalog;
+@model List<ViewModels.Catalog.Menus.MenuItemVM>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Danh sách menu</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Danh sách menu</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <form asp-action="Index" method="get">
+                        <div class="row">
+                            @*<div class="col-md-8">
+                                <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" placeholder="Enter menu" />
+                            </div>*@
+                            <div class="col-md-4">
+                                <select name="menuId" onchange="this.form.submit()" asp-items="@ViewBag.Menus" class="form-control">
+                                    <option>--Chọn danh mục--</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary">Tìm</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-6 col-xs-12">
+                    <a class="btn btn-success float-right" asp-action="Create" asp-controller="Menu">Tạo mới</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                @if (ViewBag.SuccessMsg != null)
+                {
+                    <div id="msgAlert" class="alert alert-success" role="alert">
+                        @ViewBag.SuccessMsg
+                    </div>
+                }
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Id
+                            </th>
+                            <th>
+                                Tên Menu
+                            </th>
+                            <th>
+                                Meta
+                            </th>
+                            <th>
+                                Hiện
+                            </th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Meta)
+                                </td>
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => item.Anhien)
+                                </td>*@
+
+                                <td>
+                                    @Html.ActionLink("Sửa", "Update", new { id = item.Id, menuId = item.MenuId }) |
+                                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id, menuId = item.MenuId })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

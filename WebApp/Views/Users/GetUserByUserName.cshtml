@@ -1,0 +1,14 @@
+﻿@using ViewModels.System.Users
+@model UserViewModel
+@{
+    ViewData["Title"] = "GetUserByUserName";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>GetUserByUserName</h1>
+
+<div>@Model.FullName</div>
+<div>@Model.Dob</div>
+<div>@Model.GioiTinh</div>
+<div>@Model.Email</div>
+<div>@Model.PhoneNumber</div>

@@ -1,0 +1,130 @@
+﻿@{
+    ViewData["Title"] = "Đặt hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="leftcolumncart">
+
+    <div class="colorlib-shop">
+
+        <div class="card">
+            <div class="row">
+                <div class="col-md-12 ">
+                    @*tabulation*@
+                    @*<ul class="nav nav-tabs">
+
+                            <li><button class="btn btn-link" data-toggle="tab" data-target="#manufacturer" aria-expanded="false">Địa chỉ giao hàng</button></li>
+                            <li><button class="btn btn-link" data-toggle="tab" data-target="#review" aria-expanded="false">Thanh toán</button></li>
+                        </ul>*@
+                    <div class="tab-content">
+
+                        @*<div id="description" class="tab-pane fade in active">
+                                <form asp-action="Login" asp-controller="User" method="post">
+                                    <div class="form-group">
+                                        <label class="small mb-1">Tài khoản</label>
+                                        <input class="form-control py-4" type="text" placeholder="Nhập tài khoản" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Mật khẩu</label>
+                                        <input class="form-control py-4" type="password" placeholder="Enter password" />
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" />
+                                            <label class="custom-control-label">Nhớ mật khẩu</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                        <a class="small" href="/User/ForgotPassword">Bạn quên mật khẩu?</a>
+                                        <button class="btn btn-primary" type="submit">Đăng nhập</button>
+                                    </div>
+                                </form>
+                            </div>*@
+                        <h2>Thông tin giao hàng</h2>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <form asp-action="Login" asp-controller="User" method="post">
+                                    <div class="form-group">
+                                        <label class="small mb-1">Họ tên</label>
+                                        <input class="form-control py-4" type="text" placeholder="Nhập họ tên" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Điện thoại</label>
+                                        <input class="form-control py-4" type="number" placeholder="Nhập số điện thoại" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Địa chỉ</label>
+                                        <input class="form-control py-4" type="text" placeholder="Nhập địa chỉ" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Email</label>
+                                        <input class="form-control py-4" type="email" placeholder="Nhập email" />
+                                    </div>
+                                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                        <button class="btn btn-primary" type="submit">Thanh toán</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        @*<div class="row">
+                                <div class="divider">
+                                        <div class="or payment"><h4>Hình thức giao hàng:</h4></div>
+                                    </div>
+                                    <div class="radio">
+                                        <md-radio-group>
+                                            <md-radio-button class="md-warn" name="rdoPayment" value="3"> Thời gian giao hàng dự kiến 2 – 4 ngày (không tính thứ bảy, Chủ nhật) </md-radio-button>
+                                        </md-radio-group>
+                                    </div>
+                                    <div class="divider">
+                                        <hr />
+                                        <div class="or payment"><h4>Phương thức thanh toán:</h4></div>
+                                    </div>
+                                    <div class="radio">
+                                        <md-radio-group>
+                                            <md-radio-button class="md-warn" name="rdoPayment" value="3"> Thanh toán tiền mặt khi nhận hàng </md-radio-button>
+                                        </md-radio-group>
+                                    </div>
+                                    <div class="radio">
+                                        <md-radio-group>
+                                            <md-radio-button class="md-warn" name="rdoPayment" value="12"> Thanh toán bằng thẻ quốc tế Visa, Master, JCB </md-radio-button>
+                                        </md-radio-group>
+                                    </div>
+
+                                <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                    <button class="btn btn-primary" type="submit">Thanh toán</button>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="rightcolumncart">
+    <div class="card">
+        <div class="text-center">
+            <div class="order bg-light p-2">
+                <h4>
+                    Giỏ hàng <span style=" font-size: 14px;">( 1 manga )</span>
+                </h4>
+            </div>
+            <div class="sub">
+                <p><span>Tổng tiền:</span> <span> 32000<span class="cur">₫</span></span></p>
+                <p><span>Phí vận chuyển:</span> <span> 00.00<span class="cur">₫</span></span></p>
+                <p><span>Khuyến mãi:</span> <span> 00.00<span class="cur">₫</span></span></p>
+            </div>
+            <hr />
+            <div class="grand-total">
+                <div class="order bg-light p-2">
+                    <h4>
+                        Danh sách sản phẩm
+                    </h4>
+                </div>
+                <div class="display-tc">
+                    <h3>Conan Tập 10</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

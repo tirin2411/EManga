@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "404 page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-sm-12">
+    <div id="primary" class="content-area padding-content white-color">
+        <div id="main" class="site-main">
+            <section class="error-404 not-found text-center">
+                <h1 class="404">404</h1>
+
+                <p class="lead">Sorry, we could not found the page you are looking for!</p>
+
+                <div class="row">
+                    <div class="col-sm-4 col-sm-offset-4" style="margin-left:350px">
+                        @*<form role="search" method="get" id="searchform" action="#">
+                                <div>
+                                    <input type="text" placeholder="Search and hit enter..." name="s" id="s" />
+                                </div>
+                            </form>*@
+                        <p class="go-back-home">
+                            <a asp-controller="Home" asp-action="Index">
+                                Back to Home Page
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+        <!-- #main -->
+    </div>
+    <!-- #primary -->
+</div>

@@ -1,0 +1,75 @@
+﻿@using ViewModels.Catalog.Theloai
+@using ViewModels.Catalog.Mangas
+@using ViewModels.Common;
+@model MangaCategoryVM
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var theloai = (List<TheloaiViewModel>)ViewBag.theloai;
+    var ngonngu = (List<NgonnguVM>)ViewBag.ngonngu;
+    var mange = (PagedResult<MangaViewModel>)ViewBag.manga;
+}
+
+<div class="leftcolumn">
+    <div class="card">
+        <h1 class="p-2" style="background-color:lawngreen; text-align:center;">Thể Loại</h1>
+        @foreach (var item in theloai)
+        {
+            <a style="color:black;" class="m-2" href="@item.Meta-@item.Id">@item.TenTL</a>
+        }
+    </div>
+
+    <div class="card">
+        <h4 class="m-2" style="border-bottom: solid 1px green">Danh Mục</h4>
+        @foreach (var item in ngonngu)
+        {
+            <div class="m-2"><a>@item.Name</a></div>
+        }
+    </div>
+</div>
+<div class="rightcolumn">
+    <div class="card-group">
+        <div class="card">
+            @*<h3>@(Model.Theloai.TenTL==Model)</h3>*@
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="ds-mn clearfix">
+                @for (int i = 0; i < Model.Mangas.Items.Count; i++)
+                {
+                    var item = Model.Mangas.Items[i];
+                    <div class="item" style="float: left;">
+                        <div class="text-center">
+                            <div class="product-entry">
+                                <div class="product-img">
+                                    <a href="/truyen-tranh/@item.meta-@item.mangaId">
+                                        <img src="@(Configuration["BaseAddress"] + "/user-content/" + item.LinkAnh)" alt="image" />
+                                    </a>
+                                    <p class="tag"><span class="new">New</span></p>
+                                    <div class="cart">
+                                        <p>
+                                            <span class="addtocart">
+                                                <a href="@Url.Action("AddItem", "Cart", new { magaId = item.mangaId })">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                </a>
+                                            </span>
+                                            <span><a href="/truyen-tranh/@item.meta-@item.mangaId"><i class="fas fa-eye"> </i></a></span>
+                                            <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="desc">
+                                    <h3><a asp-controller="Mangas" asp-action="MangaDetail">@item.Ten</a></h3>
+                                    <a class="price" asp-controller="Mangas" asp-action="MangaDetail"><span>@item.Gia.ToString("#,##0").Replace(',', '.')<span class="cur">₫</span></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            @await Component.InvokeAsync("Pager", Model.Mangas)
+        </div>
+    </div>
+</div>

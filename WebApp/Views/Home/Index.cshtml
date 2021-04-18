@@ -1,0 +1,277 @@
+﻿@using ViewModels.Catalog.Theloai
+@using ViewModels.Catalog.Mangas
+@using ViewModels.Catalog.Banner
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+
+@{
+    ViewData["Title"] = "Home Page";
+    var theloai = (List<TheloaiViewModel>)ViewBag.theloai;
+    var ngonngu = (List<NgonnguVM>)ViewBag.ngonngu;
+    var manga = (List<MangaViewModel>)ViewBag.manga;
+    var banner = (List<BannerViewModel>)ViewBag.banner;
+}
+<div class="leftcolumn">
+    <div class="card">
+        <h1 class="p-2" style="background-color:lawngreen; text-align:center;">Thể Loại</h1>
+        @foreach (var item in theloai)
+        {
+            <a style="color:black;" class="m-2" href="@item.Meta-@item.Id">@item.TenTL</a>
+        }
+    </div>
+
+    @*<div class="card">
+            <h4 class="m-2" style="border-bottom: solid 1px green">Danh Mục</h4>
+            @foreach (var item in ngonngu)
+            {
+                <div class="m-2"><a href="/tat-ca-san-pham">@item.Name</a></div>
+            }
+        </div>*@
+</div>
+<div class="rightcolumn">
+    @*day la banner ne*@
+    <div class="card-group">
+        <div class="card">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+
+                    @for (int index = 0; index < banner.Count; index++)
+                    {
+                        <li data-target="#carouselExampleIndicators" data-slide-to="@index" class="@(index==0 ? "active" : "") "></li>
+                    }
+                </ol>
+                <div class="carousel-inner">
+                    @for (int index = 0; index < banner.Count; index++)
+                    {
+                        var banners = banner[index];
+                        <div class="carousel-item @(index == 0?"active":"")">
+                            <img class="d-block w-100" src="@(Configuration["BaseAddress"] + "/user-content/" + banners.Hinh)" style="width: 800px; height: 335px" alt="First slide">
+                            <div class="item-body">
+                                <h5>@banners.Tieude</h5>
+                                <p>@banners.Noidung</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    @*day la list manga ne*@
+    <div class="card">
+        <div class="card-body">
+            <div style="height:20px">
+                <h3 class="card-title" style="float:left">Manga New</h3>
+                <a href="/truyen-tranh" style="float:right">xem tất cả &rarr;</a>
+            </div>
+            <hr />
+            <div class="listmn owl-carousel">
+                @foreach (var item in manga)
+                {
+                    <div class="item">
+                        <div class="text-center">
+                            <div class="product-entry">
+                                <div class="product-img">
+                                    <a href="/truyen-tranh/@item.meta-@item.mangaId">
+                                        <img src="@(Configuration["BaseAddress"] + "/user-content/" + item.LinkAnh)" alt="image" />
+                                    </a>
+                                    <p class="tag"><span class="new">New</span></p>
+                                    <div class="cart">
+                                        <p>
+                                            <span class="addtocart">
+                                                <a href="@Url.Action("AddItem", "Cart", new { magaId = item.mangaId })">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                </a>
+                                            </span>
+                                            <span><a href="/truyen-tranh/@item.meta-@item.mangaId"><i class="fas fa-eye"> </i></a></span>
+                                            <span><a href="@Url.Action("AddItems", "WishLists", new { mangaId = item.mangaId })"><i class="fas fa-heart"></i></a></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="desc">
+                                    <h3><a asp-controller="Mangas" asp-action="MangaDetail">@item.Ten</a></h3>
+                                    <div class="p-view">
+                                        @if (item.Gia < item.Giagoc)
+                                        {<a class="price" asp-controller="Mangas" asp-action="MangaDetail">
+                                                <span class="real-price" style="text-decoration:line-through;color:gray;font-size:small;padding-right:5px;">
+                                                    @item.Giagoc.ToString("#,##0").Replace(',', '.')<span class="cur" style="text-decoration:line-through;color:gray;font-size:small;">₫</span>
+                                                </span>
+                                            </a>
+                                        }
+                                        <a class="price" asp-controller="Mangas" asp-action="MangaDetail">
+                                            <span>@item.Gia.ToString("#,##0").Replace(',', '.')<span class="cur">₫</span></span>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    @*list san pham khuyen mai*@
+    <partial name="GetMangaDiscount" />
+    @*list san pham ban chay*@
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">Manga hot</h3>
+            <hr />
+            <div class="listmn owl-carousel">
+
+                <div class="item">
+                    <div class="text-center">
+                        <div class="product-entry">
+                            <div class="product-img">
+                                <img src="~/images/Ghost&Lady.jpg" alt="Ghost & Lady" />
+                                <p class="tag"><span class="new">New</span></p>
+                                <div class="cart">
+                                    <p>
+                                        <span class="addtocart"><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></span>
+                                        <span><a href="product-detail.html"><i class="fas fa-eye"></i></a></span>
+                                        <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="t-view">
+                                <a asp-controller="Mangas" asp-action="MangaDetail">Ghost & Lady</a>
+                            </div>
+                            <div class="p-view">
+                                @*<span class="real-price">30000<span class="cur">₫</span> </span>*@
+                                <span class="price">50000<span class="cur">₫</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="text-center">
+                        <div class="product-entry">
+                            <div class="product-img">
+                                <img src="~/images/Yaoyorozu.jpg" alt="Yaoyorozu" />
+                                <p class="tag"><span class="new">New</span></p>
+                                <div class="cart">
+                                    <p>
+                                        <span class="addtocart"><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></span>
+                                        <span><a href="product-detail.html"><i class="fas fa-eye"></i></a></span>
+                                        <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="t-view">
+                                <a asp-controller="Mangas" asp-action="MangaDetail">Yaoyorozu</a>
+                            </div>
+                            <div class="p-view">
+                                @*<span class="real-price">30000<span class="cur">₫</span> </span>*@
+                                <span class="price">50000<span class="cur">₫</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="text-center">
+                        <div class="product-entry">
+                            <div class="product-img">
+                                <img src="~/images/Blame.jpg" alt="Blame" />
+                                <p class="tag"><span class="new">New</span></p>
+                                <div class="cart">
+                                    <p>
+                                        <span class="addtocart"><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></span>
+                                        <span><a href="product-detail.html"><i class="fas fa-eye"></i></a></span>
+                                        <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="t-view">
+                                <a asp-controller="Mangas" asp-action="MangaDetail">Blame</a>
+                            </div>
+                            <div class="p-view">
+                                @*<span class="real-price">30000<span class="cur">₫</span> </span>*@
+                                <span class="price">50000<span class="cur">₫</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="text-center">
+                        <div class="product-entry">
+                            <div class="product-img">
+                                <img src="~/images/DungeonMeshi.jpg" alt="Dungeon Meshi" />
+                                <p class="tag"><span class="new">New</span></p>
+                                <div class="cart">
+                                    <p>
+                                        <span class="addtocart"><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></span>
+                                        <span><a href="product-detail.html"><i class="fas fa-eye"></i></a></span>
+                                        <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="t-view">
+                                <a asp-controller="Mangas" asp-action="MangaDetail">Dungeon Meshi (Dungeon Food)</a>
+                            </div>
+                            <div class="p-view">
+                                @*<span class="real-price">30000<span class="cur">₫</span> </span>*@
+                                <span class="price">50000<span class="cur">₫</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="text-center">
+                        <div class="product-entry">
+                            <div class="product-img">
+                                <img src="~/images/Onisan.jpg" alt="Onisan, Dochira" />
+                                <p class="tag"><span class="new">New</span></p>
+                                <div class="cart">
+                                    <p>
+                                        <span class="addtocart"><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></span>
+                                        <span><a href="product-detail.html"><i class="fas fa-eye"></i></a></span>
+                                        <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="t-view">
+                                <a asp-controller="Mangas" asp-action="MangaDetail">Onisan, Dochira (An Ogre, Who?)</a>
+                            </div>
+                            <div class="p-view">
+                                @*<span class="real-price">30000<span class="cur">₫</span> </span>*@
+                                <span class="price">50000<span class="cur">₫</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="text-center">
+                        <div class="product-entry">
+                            <div class="product-img">
+                                <img src="~/images/GyousekinoKuni4.jpg" alt="Gyouseki no Kuni 4" />
+                                <p class="tag"><span class="new">New</span></p>
+                                <div class="cart">
+                                    <p>
+                                        <span class="addtocart"><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></span>
+                                        <span><a href="product-detail.html"><i class="fas fa-eye"></i></a></span>
+                                        <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="t-view">
+                                <a asp-controller="Mangas" asp-action="MangaDetail">Gyouseki no Kuni 4 (Jewel Country)</a>
+                            </div>
+                            <div class="p-view">
+                                @*<span class="real-price">30000<span class="cur">₫</span> </span>*@
+                                <span class="price">50000<span class="cur">₫</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

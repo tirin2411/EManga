@@ -1,0 +1,102 @@
+{
+  "version": "1.0",
+  "defaultProvider": "unpkg",
+  "libraries": [
+    {
+      "library": "angular@1.6.1",
+      "destination": "wwwroot/lib/angular",
+      "files": [
+        "angular.js",
+        "angular.min.js",
+        "angular-csp.css",
+        "angular.min.js.gzip",
+        "angular.min.js.map",
+        "index.js"
+      ]
+    },
+    {
+      "library": "angular-chart.js@0.10.2",
+      "destination": "wwwroot/lib/angular-char",
+      "files": [
+        "dist/angular-chart.js",
+        "dist/angular-chart.css",
+        "dist/angular-chart.min.css",
+        "dist/angular-chart.min.css.map",
+        "dist/angular-chart.min.js",
+        "dist/angular-chart.min.js.map",
+        "angular-chart.js",
+        "gulpfile.js"
+      ]
+    },
+    {
+      "library": "angular-ui-router@0.3.2",
+      "destination": "wwwroot/lib/angular-ui-router",
+      "files": [
+        "release/angular-ui-router.js",
+        "release/angular-ui-router.min.js",
+        "src/state.js",
+        "src/common.js",
+        "src/resolve.js",
+        "src/stateFilters.js",
+        "src/stateDirectives.js",
+        "src/templateFactory.js",
+        "src/urlMatcherFactory.js",
+        "src/urlRouter.js",
+        "src/view.js",
+        "src/viewDirective.js",
+        "src/viewScroll.js"
+      ]
+    },
+    {
+      "library": "chart.js@1.1.1",
+      "destination": "wwwroot/lib/char.js",
+      "files": [
+        "Chart.js",
+        "Chart.min.js",
+        "gulpfile.js",
+        "src/Chart.Bar.js",
+        "src/Chart.Core.js",
+        "src/Chart.Doughnut.js",
+        "src/Chart.Line.js",
+        "src/Chart.PolarArea.js",
+        "src/Chart.Radar.js"
+      ]
+    },
+    {
+      "library": "angular-local-storage@0.2.7",
+      "destination": "wwwroot/lib/angular-local-storage",
+      "files": [
+        "index.js",
+        "demo/demo-app.js",
+        "demo/demo-style.css",
+        "demo/demo.html",
+        "dist/angular-local-storage.js",
+        "dist/angular-local-storage.min.js",
+        "dist/angular-local-storage.min.js.map"
+      ]
+    },
+    {
+      "library": "angular-loading-bar@0.9.0",
+      "destination": "wwwroot/lib/angular-loading-bar",
+      "files": [
+        "index.js",
+        "Gruntfile.js",
+        "build/loading-bar.css",
+        "build/loading-bar.js",
+        "build/loading-bar.min.css",
+        "build/loading-bar.min.js",
+        "src/loading-bar.css",
+        "src/loading-bar.js"
+      ]
+    },
+    {
+      "library": "angular-sanitize@1.6.1",
+      "destination": "wwwroot/lib/angular-sanitize",
+      "files": [
+        "index.js",
+        "angular-sanitize.js",
+        "angular-sanitize.min.js"
+      ]
+    }
+  ]
+}

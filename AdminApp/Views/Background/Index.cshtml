@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ViewModels.Catalog.Banner.BannerViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h1 class="mt-4">Chỉnh sửa background</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Chỉnh sửa background</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                @if (ViewBag.SuccessMsg != null)
+                {
+                    <div id="msgAlert" class="alert alert-success" role="alert">
+                        @ViewBag.SuccessMsg
+                    </div>
+                }
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Hinh)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Anhien)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    <img width="60" height="90" src="~/user-content/@Html.DisplayFor(modelItem => item.Hinh)" />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Anhien)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { idBanner = item.Id }) |
+                                    @Html.ActionLink("Details", "Details", new { idBanner = item.Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { idBanner = item.Id })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

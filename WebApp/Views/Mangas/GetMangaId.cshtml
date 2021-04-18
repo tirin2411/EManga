@@ -1,0 +1,458 @@
+﻿@model ViewModels.Catalog.Mangas.MangaViewModel
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+
+@{
+    ViewData["Title"] = "GetMangaId";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var hostName = $"{Context.Request.Scheme}://{Context.Request.Host}";
+}
+@section SocialSeo{
+    <meta property="og:title" content="@Model.Ten" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="@hostName@Context.Request.Path" />
+    <meta property="og:image" content="@hostName/Hinh/HangHoa/@Model.LinkAnh" />
+}
+@*<h1>GetMangaId</h1>
+
+    <div>
+        <h4>MangaViewModel</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.mangaId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.mangaId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Ten)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Ten)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Gia)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Gia)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Giagoc)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Giagoc)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Anhien)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Anhien)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SoLuong)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.SoLuong)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TinhtrangMn)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TinhtrangMn)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Mota)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Mota)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Tacgia)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Tacgia)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NamXB)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NamXB)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Sotrang)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Sotrang)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TheloaiId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TheloaiId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.LinkAnh)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.LinkAnh)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UserId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserId)
+            </dd>
+        </dl>
+    </div>*@
+
+<div class="colorlib-shop mt-4">
+    <div class="container">
+        <div class="card">
+            <div class="row row-pb-lg">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="product-detail-wrap">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="product-entry">
+                                    <div class="product-img" style="background-image: url('@(Configuration["BaseAddress"] + "/user-content/" + Model.LinkAnh)');">
+                                        <p class="tag"><span class="new">New</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="desc" style="margin-top:10px">
+                                    <h2> @Html.DisplayFor(model => model.Ten)</h2>
+                                    <br />
+                                    <p class="price">
+                                        <span>
+                                            <strong>Giá bán:</strong>
+                                            <span> @Html.DisplayFor(model => model.Gia)<span class="cur">₫</span></span>
+                                        </span>
+                                    </p>
+                                    <br />
+
+                                    <div class="row row-pb-sm">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="mr-2">Số Lượng:</span>
+                                                <button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                                <input id="quantity" name="quantity" class="form-control text-center" value="1" min="1" max="100">
+                                                <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <p class="mr-3">
+                                            <a class="btn text-success" style="box-shadow:inset 0 0 0 1px green" href="/them-vao-gio-hang?magaId=@Html.DisplayFor(model => model.mangaId)&soluong=1">
+                                                Thêm vào giỏ hàng
+                                            </a>
+                                        </p>
+                                        <p>
+                                            @*<a class="btn btn-primary" type="button" href="/dat-hang"> Mua Ngay</a>*@
+                                            <a class="btn btn-primary" href="@Url.Action("DatHang", "Orders", new { mangaId = Model.mangaId })">
+                                                Mua Ngay
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row">
+                    <div class="col-md-12 tabulation">
+                        <div class="tab-content">
+                            <h4><strong>THÔNG TIN CHI TIẾT</strong></h4>
+
+                            <br />
+                            <div class="row">
+                                <table class="table " cellspacing="0">
+                                    <tr>
+                                        <td>
+                                            Nhà xuất bản:
+                                        </td>
+                                        <td>
+                                            Nhà xuất bản Kim Đồng
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Tác giả:
+                                        </td>
+                                        <td>
+                                            Oda Eiichiro
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Nhà phát hành:
+                                        </td>
+                                        <td>
+                                            Nhà xuất bản Kim Đồng
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Ngôn ngữ:
+                                        </td>
+                                        <td>
+                                            Tiếng việt
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Số trang:
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.Sotrang)
+                                            trang
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Loại bìa:
+                                        </td>
+                                        <td>
+                                            Loại mềm
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br />
+                            <h4><strong>MÔ TẢ</strong></h4>
+                            <br />
+                            <div class="row">
+                                <table class="table " cellspacing="0">
+                                    <tr>
+                                        <td>
+                                            Tình trạng:
+                                        </td>
+                                        <td>
+                                            Mới 100%
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Giới thiệu:
+                                        </td>
+                                        <td>
+                                            One Piece (Vua hải tặc) bộ thuộc thể loại truyện tranh Hành động kể về một cậu bé tên
+                                            Monkey D. Luffy, dong buồm ra khơi trên chuyến hành trình tìm kho báu huyền thoại
+                                            One Piece và trở thành Vua hải tặc. Để làm được điều này, cậu phải đến được tận cùng
+                                            của vùng biển nguy hiểm và chết chóc nhất thế giới: Grand Line (Đại Hải Trình).
+                                            Luffy đội trên đầu chiếc mũ rơm như một nhân chứng lịch sử vì chiếc mũ rơm đó đã từng thuộc về
+                                            hải tặc hùng mạnh: Hải tặc vương Gol. D. Roger và tứ hoàng Shank "tóc đỏ".
+                                            Luffy lãnh đạo nhóm hải tặc Mũ Rơm qua East Blue (Biển Đông) và rồi tiến đến Grand Line.
+                                            Cậu theo dấu chân của vị vua hải tặc quá cố, Gol. D. Roger, chu du từ đảo này sang đảo khác để
+                                            đến với kho báu vĩ đại.
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row">
+                    <div class="col-md-12 tabulation">
+                        <div class="tab-content">
+                            <h4><strong>Nhận xét</strong></h4>
+                            <br />
+                            <div class="comment-wrapper">
+                                <div class="panel panel-info" style="background-color:white;">
+                                    <div class="panel-heading"></div>
+                                    <div class="panel-body">
+                                        <textarea class="form-control" placeholder="write a comment..." rows="3"></textarea>
+                                        <br>
+                                        <button type="button" class="btn btn-info pull-right">Gửi</button>
+                                        <div class="clearfix"></div>
+                                        <hr>
+                                        @*<ul class="media-list">
+                                                <li class="media">
+                                                    <a href="#" class="pull-left">
+                                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <span class="text-muted pull-right">
+                                                            <small class="text-muted">30 min ago</small>
+                                                        </span>
+                                                        <strong class="text-success">MartinoMont</strong>
+                                                        <p>
+                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                            Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            </ul>*@
+                                        <p>Chưa có lời nhận xét nào</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <h5><span>Manga khác</span></h5>
+        </div>
+        <hr />
+        <div class="listmn owl-carousel">
+            <div class="item">
+                <div class="text-center">
+                    <div class="product-entry">
+                        <div class="product-img">
+                            <img src="~/images/Ghost&Lady.jpg" alt="Ghost & Lady" />
+                            <p class="tag"><span class="new">New</span></p>
+                            <div class="cart">
+                                <p>
+                                    <span class="addtocart"><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></span>
+                                    <span><a href="product-detail.html"><i class="fas fa-eye"></i></a></span>
+                                    <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="t-view">
+                            <a asp-controller="Mangas" asp-action="MangaDetail">Ghost & Lady</a>
+                        </div>
+                        <div class="p-view">
+                            <span class="price">50000<span class="cur">₫</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="text-center">
+                    <div class="product-entry">
+                        <div class="product-img">
+                            <img src="~/images/Yaoyorozu.jpg" alt="Yaoyorozu" />
+                            <p class="tag"><span class="new">New</span></p>
+                            <div class="cart">
+                                <p>
+                                    <span class="addtocart"><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></span>
+                                    <span><a href="product-detail.html"><i class="fas fa-eye"></i></a></span>
+                                    <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="t-view">
+                            <a asp-controller="Mangas" asp-action="MangaDetail">Yaoyorozu</a>
+                        </div>
+                        <div class="p-view">
+                            <span class="price">50000<span class="cur">₫</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="text-center">
+                    <div class="product-entry">
+                        <div class="product-img">
+                            <img src="~/images/Blame.jpg" alt="Blame" />
+                            <p class="tag"><span class="new">New</span></p>
+                            <div class="cart">
+                                <p>
+                                    <span class="addtocart"><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></span>
+                                    <span><a href="product-detail.html"><i class="fas fa-eye"></i></a></span>
+                                    <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="t-view">
+                            <a asp-controller="Mangas" asp-action="MangaDetail">Blame</a>
+                        </div>
+                        <div class="p-view">
+                            <span class="price">50000<span class="cur">₫</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="text-center">
+                    <div class="product-entry">
+                        <div class="product-img">
+                            <img src="~/images/DungeonMeshi.jpg" alt="Dungeon Meshi" />
+                            <p class="tag"><span class="new">New</span></p>
+                            <div class="cart">
+                                <p>
+                                    <span class="addtocart"><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></span>
+                                    <span><a href="product-detail.html"><i class="fas fa-eye"></i></a></span>
+                                    <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="t-view">
+                            <a asp-controller="Mangas" asp-action="MangaDetail">Dungeon Meshi (Dungeon Food)</a>
+                        </div>
+                        <div class="p-view">
+                            <span class="price">50000<span class="cur">₫</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="text-center">
+                    <div class="product-entry">
+                        <div class="product-img">
+                            <img src="~/images/Onisan.jpg" alt="Onisan, Dochira" />
+                            <p class="tag"><span class="new">New</span></p>
+                            <div class="cart">
+                                <p>
+                                    <span class="addtocart"><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></span>
+                                    <span><a href="product-detail.html"><i class="fas fa-eye"></i></a></span>
+                                    <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="t-view">
+                            <a asp-controller="Mangas" asp-action="MangaDetail">Onisan, Dochira (An Ogre, Who?)</a>
+                        </div>
+                        <div class="p-view">
+                            <span class="price">50000<span class="cur">₫</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="text-center">
+                    <div class="product-entry">
+                        <div class="product-img">
+                            <img src="~/images/GyousekinoKuni4.jpg" alt="Gyouseki no Kuni 4" />
+                            <p class="tag"><span class="new">New</span></p>
+                            <div class="cart">
+                                <p>
+                                    <span class="addtocart"><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></span>
+                                    <span><a href="product-detail.html"><i class="fas fa-eye"></i></a></span>
+                                    <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="t-view">
+                            <a asp-controller="Mangas" asp-action="MangaDetail">Gyouseki no Kuni 4 (Jewel Country)</a>
+                        </div>
+                        <div class="p-view">
+                            <span class="price">50000<span class="cur">₫</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

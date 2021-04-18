@@ -1,0 +1,86 @@
+﻿@model ViewModels.Catalog.Khuyenmai.KhuyenmaiVM
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Chi tiết</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Chi tiết</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <a class="btn btn-success" asp-action="Index" asp-controller="Discount">Về danh sách</a>
+        </div>
+
+        <div class="card-body">
+            <div class="col-md-12">
+                <dl class="row">
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Id)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Id)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.FromDate)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.FromDate)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.ToDate)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.ToDate)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.ApplyForAll)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.ApplyForAll)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.DiscountPercent)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.DiscountPercent)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.DiscountAmount)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.DiscountAmount)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Status)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Status)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.CouponCode)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.CouponCode)
+                    </dd>
+                    @*<dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.MaximumDiscountedQuantity)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.MaximumDiscountedQuantity)
+                    </dd>*@
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>

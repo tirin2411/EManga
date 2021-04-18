@@ -1,0 +1,240 @@
+﻿@{
+    ViewData["Title"] = "Trang chủ";
+}
+@section Scripts{
+    <script src="~/js/revenueStatistic.js"></script>
+}
+<div class="container-fluid">
+    <h1 class="mt-4">Trang chủ</h1>
+    <br />
+    <div class="row">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-dark mb-4">
+                <div class="card-body d-flex align-items-center justify-content-between">
+                    <div class="h4 text-white"><i class="fas fa-cat"></i></div>
+                    <div class="h4">0</div>
+                </div>
+                <div class="card-footer">
+                    <a class="small text-dark stretched-link" href="#">Số lượt truy cập website</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    @*char*@
+    <!--<div class="row">
+        <div class="col-xl-8">
+            <div class="card bg-default">
+                <div class="card-header bg-transparent">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
+                            <h5 class="h3 text-white mb-0">Sales value</h5>
+                        </div>
+                        <div class="col">
+                            <ul class="nav nav-pills justify-content-end">
+                                <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}' data-prefix="$" data-suffix="k">
+                                    <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
+                                        <span class="d-none d-md-block">Month</span>
+                                        <span class="d-md-none">M</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}' data-prefix="$" data-suffix="k">
+                                    <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
+                                        <span class="d-none d-md-block">Week</span>
+                                        <span class="d-md-none">W</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">-->
+    <!-- Chart -->
+    <!--<div class="chart">-->
+    <!-- Chart wrapper -->
+    <!--<canvas id="chart-sales-dark" class="chart-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-header bg-transparent">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
+                        <h5 class="h3 mb-0">Total orders</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">-->
+    <!-- Chart -->
+    <!--<div class="chart">
+                        <canvas id="chart-bars" class="chart-canvas"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div ng-app="statistics" ng-controller="revenueStatisticController">
+        <div class="row">
+            <div class="col-xl-8">
+                <div class="card bg-default">
+                    <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="text-light text-uppercase ls-1 mb-1">Dữ liệu thống kê</h6>
+                                <h5 class="h3 text-white mb-0">Doanh thu</h5>
+                            </div>
+                            @*<div class="col">
+                                    <ul class="nav nav-pills justify-content-end">
+                                        <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}' data-prefix="$" data-suffix="k">
+                                            <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
+                                                <span class="d-none d-md-block">Ngày</span>
+                                                <span class="d-md-none">M</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}' data-prefix="$" data-suffix="k">
+                                            <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
+                                                <span class="d-none d-md-block">Tháng</span>
+                                                <span class="d-md-none">W</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>*@
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- Chart -->
+                        <div class="chart">
+                            <!-- Chart wrapper -->
+                            <canvas id="line" class="chart chart-line" chart-data="chartdata" chart-labels="labels" chart-series="series"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="col-xl-4">
+            <div class="card">
+                <div class="card-header bg-transparent">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
+                            <h5 class="h3 mb-0">Total orders</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">-->
+            <!-- Chart -->
+            <!--<div class="chart">
+                            <canvas id="chart-bars" class="chart chart-canvas" chart-data="chartdata" chart-labels="labels" chart-series="series"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+        
+                <!--<section class="col-lg-5">
+                    <!-- Map box -->
+                    <!--<div class="box box-solid">
+                        <div class="box-header">-->
+                            <!-- tools box -->
+                            <!--@*<i class="fa fa-map-marker"></i>*@
+                            <h3 class="box-title">
+                                Dữ liệu thống kê
+                            </h3>
+                        </div>
+                        <div class="box-body">
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td>Ngày</td>
+                                        <td>Doanh số</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in tabledata">
+                                        <td>
+                                            {{item.date | date}}
+                                        </td>
+                                        <td>
+                                            {{item.revenues | number}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>--><!-- /.box-body-->
+                        <!--<div class="box-footer no-border">
+                        </div>
+                    </div>
+                </section>--><!-- right col -->
+           
+        </div>
+        <div class="row">
+            @*<!-- Left col -->
+                <section class="col-lg-7">
+                    <!-- Custom tabs (Charts with tabs)-->
+                    <div class="nav-tabs-custom">
+                        <!-- Tabs within a box -->
+                        <ul class="nav nav-tabs pull-right">
+                            <li class="active"><a href="#revenue-chart" data-toggle="tab">Doanh thu</a></li>
+                        </ul>
+                        <div class="tab-content no-padding">
+                            <!-- Morris chart - Sales -->
+                            <canvas id="bar" class="chart chart-line"
+                                    chart-data="chartdata" chart-labels="labels" chart-series="series"></canvas>
+                        </div>
+                    </div><!-- /.nav-tabs-custom -->
+
+                </section><!-- /.Left col -->
+            *@
+            <!-- right col (We are only adding the ID to make the widgets sortable)-->
+            <!--<section class="col-lg-5">
+            <!-- Map box -->
+            <!--<div class="box box-solid">
+            <div class="box-header">-->
+            <!-- tools box -->
+            <!--@*<i class="fa fa-map-marker"></i>*@
+                <h3 class="box-title">
+                    Dữ liệu thống kê
+                </h3>
+            </div>
+            <div class="box-body">
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td>Ngày</td>
+                            <td>Doanh số</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in tabledata">
+                            <td>
+                                {{item.date | date}}
+                            </td>
+                            <td>
+                                {{item.revenues | number}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>-->
+            <!-- /.box-body-->
+            <!--<div class="box-footer no-border">
+                    </div>
+                </div>
+            </section>-->
+            <!-- right col -->
+        </div>
+    </div><!-- /.row (main row) -->
+    <br />
+    <div class="card mb-4">
+        <div class="card-header text-center">Nếu cần hỗ trợ kỹ thuật, vui lòng thực hiện một trong hai cách sau:</div>
+        <div class="card-body">
+            <p>1. Gửi email đến địa chỉ <strong>tuihotrokythuatne@gmail.com</strong></p>
+            <p>2. Gọi số hotline để được hỗ trợ <strong>0919001090</strong></p>
+        </div>
+    </div>
+</div>

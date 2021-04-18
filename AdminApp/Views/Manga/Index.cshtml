@@ -1,0 +1,118 @@
+﻿@using ViewModels.Common;
+@model PagedResult<ViewModels.Catalog.Mangas.MangaViewModel>
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+
+@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script>
+        setTimeout(function () {
+            $('#msgAlert').fadeOut('slow');
+        }, 5000);
+    </script>
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Danh sách sản phẩm</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Danh sách sản phẩm</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <form asp-action="Index" method="get">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <input type="text" value="@ViewBag.Keyword" placeholder="Enter name's manga" name="keyword" class="form-control" />
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary">Tìm</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-6 col-xs-12">
+                    <a class="btn btn-success float-right" asp-action="Create" asp-controller="Manga">Tạo mới</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                @if (ViewBag.SuccessMsg != null)
+                {
+                    <div id="msgAlert" class="alert alert-success" role="alert">
+                        @ViewBag.SuccessMsg
+                    </div>
+                }
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Id
+                            </th>
+                            <th>
+                                Tên manga
+                            </th>
+                            <th>
+                                Giá
+                            </th>
+                            <th>
+                                Giá gốc
+                            </th>
+                            <th>
+                                Ảnh
+                            </th>
+                            <th>
+                                Hiện
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.mangaId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Ten)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Gia)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Giagoc)
+                                </td>
+                                <td>
+                                    <img width="60" height="90" src="@(Configuration["BaseAddress"] + "/user-content/" + item.LinkAnh)" />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Anhien)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { mangaId = item.mangaId }) |
+                                    @Html.ActionLink("Details", "Details", new { mangaId = item.mangaId }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.mangaId }) |
+                                    @Html.ActionLink("Assign Category", "CategoryAssign", new { id = item.mangaId }) |
+                                    @Html.ActionLink("Discount", "DiscountAssign", new { id = item.mangaId })
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            @await Component.InvokeAsync("Pager", Model)
+        </div>
+    </div>
+</div>

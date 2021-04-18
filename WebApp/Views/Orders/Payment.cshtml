@@ -1,0 +1,164 @@
+﻿@using ViewModels.Catalog.Cart
+@model List<CartItem>
+
+@{
+    ViewData["Title"] = "Thanh toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#Province").change(function () {
+                var id = $(this).val();
+                $("#district").empty();
+                $.get("/Orders/District_Bind", { provinceId: id }, function (data) {
+                    var v = "<option>---Quận Huyện---</option>";
+                    $.each(data, function (i, v1) {
+                        v += "<option value=" + v1.id + ">" + v1.type + " " + v1.name + "</option>";
+                    });
+                    $("#district").html(v);
+                });
+            });
+            $("#Province").change(function () {
+                var id = $(this).val();
+                $("#shipping").empty();
+                $.get("/Orders/GetByProvinceId", { provinceId: id }, function (data) {
+                    var v = [];
+                    v += data.shippingPrice;
+                    var s = v.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+                    $("#shipping").html("<span>" + s + "<span class='cur'>₫</span></span>");
+                });
+            });
+            $("#district").change(function () {
+                var id = $(this).val();
+                $("#ward").empty();
+                $.get("/Orders/Ward_Bind", { districtId: id }, function (data) {
+                    var v = "<option>---Xã Phường---</option>";
+                    $.each(data, function (i, v1) {
+                        v += '<option value=' + v1.type + v1.name + '>' + v1.type + " " + v1.name + '</option>';
+                    });
+                    $("#ward").html(v);
+                });
+            });
+        });
+
+    </script>
+}
+
+<div class="leftcolumncart">
+
+    <div class="colorlib-shop">
+
+        <div class="card" style=" padding: 10px;">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <h2>Thông tin giao hàng</h2>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <form asp-action="Payment" asp-controller="Orders" method="post">
+                                <div class="form-group">
+                                    <label class="small mb-1">Họ tên: </label>
+                                    <input class="form-control py-4" name="NguoiNhan" type="text" placeholder="Nhập họ tên" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="small mb-1">Điện thoại: </label>
+                                    <input class="form-control py-4" name="SDT" type="number" placeholder="Nhập số điện thoại" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="small mb-1">Tỉnh Thành: </label>
+                                    <select id="Province" name="Province" asp-items="@ViewBag.Provinces" class="form-control col-md-4">
+                                        <option>---Tỉnh Thành---</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="small mb-1">Quận Huyện: </label>
+                                    <select id="district" name="District" class="form-control col-md-3">
+                                        <option>---Quận Huyện---</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="small mb-1">Xã Phường: </label>
+                                    <select id="ward" name="Wards" class="form-control col-md-3">
+                                        <option>---Xã Phường---</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="small mb-1">Địa chỉ: </label>
+                                    <input class="form-control py-4" name="DiaChiNhan" type="text" placeholder="Nhập địa chỉ" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="small mb-1">Email: </label>
+                                    <input class="form-control py-4" name="Email" type="email" placeholder="Nhập email" />
+                                </div>
+                                <div class="form-group">
+                                    <div class="divider">
+                                        <div class="or payment"><h4>Hình thức giao hàng: </h4></div>
+                                    </div>
+                                    @*giao hàng nhanh / giao hang chuan*@
+                                    <div class="radio">
+                                        <md-radio-group>
+                                            <md-radio-button class="md-warn" name="rdoPayment" value="true"> Thời gian giao hàng dự kiến 2 – 4 ngày (không tính thứ bảy, Chủ nhật) </md-radio-button>
+                                        </md-radio-group>
+                                    </div>
+                                    <div class="divider">
+                                        <div class="or payment"><h4>Phương thức thanh toán:</h4></div>
+                                    </div>
+                                    <div class="radio">
+                                        <md-radio-group>
+                                            <md-radio-button class="md-warn" name="rdoPayment" value="true"> Thanh toán tiền mặt khi nhận hàng </md-radio-button>
+                                        </md-radio-group>
+                                    </div>
+                                    @*<p><span>Phí vận chuyển:</span> <span id="shipping"><span>00.00<span class="cur">₫</span></span></span></p>*@
+                                    @*<div class="radio">
+                                            <md-radio-group>
+                                                <md-radio-button class="md-warn" name="rdoPayment" value="12"> Thanh toán bằng thẻ quốc tế Visa, Master, JCB </md-radio-button>
+                                            </md-radio-group>
+                                        </div>*@
+                                </div>
+                                <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                    <button class="btn btn-primary" type="submit">Thanh toán</button>
+                                    <a asp-controller="Cart" asp-action="PaypalCheckout">
+                                        <img src="~/images/paypal_checkout.gif" height="100" />
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="rightcolumncart">
+    <div class="card">
+        <div class="text-center">
+
+            <div class="order bg-light p-2">
+                <h4>
+                    Giỏ hàng <span style=" font-size: 14px;">( @Model.Sum(m => m.SoLuong) )</span>
+                </h4>
+            </div>
+            <div class="sub">
+                <p><span>Thành tiền:</span> <span> @Model.Sum(m => m.ThanhTien).ToString("#,##0").Replace(',', '.')<span class="cur">₫</span></span></p>
+                <p><span>Phí vận chuyển:</span> <span id="shipping"><span>00.00<span class="cur">₫</span></span></span></p>
+                <p><span>Khuyến mãi:</span> <span> 00.00<span class="cur">₫</span></span></p>
+            </div>
+            <hr />
+            <div class="grand-total">
+                <div class="order bg-light p-2">
+                    <h4>
+                        Danh sách sản phẩm
+                    </h4>
+                </div>
+                <ul class="display-tc" style="list-style:none;">
+                    @foreach (CartItem item in Model)
+                    {
+                        <li>@item.TenManga</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

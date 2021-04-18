@@ -1,0 +1,216 @@
+﻿@using ViewModels.Catalog.Theloai
+@using ViewModels.Catalog.Mangas
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+
+@{
+    ViewData["Title"] = "Sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var theloai = (List<TheloaiViewModel>)ViewBag.theloai;
+    var ngonngu = (List<NgonnguVM>)ViewBag.ngonngu;
+    var manga = (List<MangaViewModel>)ViewBag.manga;
+}
+<div class="leftcolumn">
+    <div class="card">
+        <h1 class="p-2" style="background-color:lawngreen; text-align:center;">Thể Loại</h1>
+        @foreach (var item in theloai)
+        {
+            <a style="color:black;" class="m-2" href="@item.Meta-@item.Id">@item.TenTL</a>
+        }
+    </div>
+
+    <div class="card">
+        <h4 class="m-2" style="border-bottom: solid 1px green">Danh Mục</h4>
+        @foreach (var item in ngonngu)
+        {
+            <div class="m-2"><a>@item.Name</a></div>
+        }
+    </div>
+</div>
+<div class="rightcolumn">
+    <div class="card">
+        <div class="ds-mn clearfix">
+            @foreach (var item in Model)
+            {
+                <div class="box" style="float: left;">
+                    <div class="item">
+                        <div class="text-center">
+                            <div class="product-entry">
+                                <div class="product-img">
+                                    <a href="/truyen-tranh/@item.meta-@item.mangaId">
+                                        <img width="250" height="300" src="@(Configuration["BaseAddress"] + "/user-content/" + item.LinkAnh)" />
+                                    </a>
+                                    <p class="tag"><span class="new">New</span></p>
+                                    <div class="cart">
+                                        <p>
+                                            <span class="addtocart"><a href="@Url.Action("AddItem", "Cart", new { magaId = item.mangaId })"><i class="fas fa-shopping-cart"></i></a></span>
+                                            <span><a href="/truyen-tranh/@item.meta-@item.mangaId"><i class="fas fa-eye"></i></a></span>
+                                            <span><a href="@Url.Action("AddItems", "WishLists", new { mangaId = item.mangaId })"><i class="fas fa-heart"></i></a></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="noidungne" style="text-align:center;height:50px;margin-top:0px;">
+                                    <div class="tensp">
+                                        <a class="tentruyenne" asp-area="" asp-controller="Details" asp-action="Index">@item.Ten</a>
+                                    </div>
+                                    <div class="giasp">
+                                        <span class="tentruyenne" asp-area="" asp-controller="Details" asp-action="Index">@item.Gia<span class="cur">₫</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            @*<div class="box" style="float: left;width: 33.33%;margin-top:2%;">
+                <div class="item">
+                    <div class="text-center">
+                        <div class="product-entry">
+                            <div class="product-img">
+                                <img src="~/images/Ghost&Lady.jpg" width="250" height="300" alt="Ghost & Lady" />
+                                <p class="tag"><span class="new">New</span></p>
+                                <div class="cart">
+                                    <p>
+                                        <span class="addtocart"><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></span>
+                                        <span><a href="product-detail.html"><i class="fas fa-eye"></i></a></span>
+                                        <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="t-view">
+                                <a asp-controller="Mangas" asp-action="MangaDetail">Ghost & Lady</a>
+                            </div>
+                            <div class="p-view">
+                                <span class="price">50000<span class="cur">₫</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box" style="float: left;width: 33.33%;margin-top:2%;">
+                <div class="item">
+                    <div class="text-center">
+                        <div class="product-entry">
+                            <div class="product-img">
+                                <img src="~/images/Yaoyorozu.jpg" width="250" height="300" alt="Yaoyorozu" />
+                                <p class="tag"><span class="new">New</span></p>
+                                <div class="cart">
+                                    <p>
+                                        <span class="addtocart"><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></span>
+                                        <span><a href="product-detail.html"><i class="fas fa-eye"></i></a></span>
+                                        <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="t-view">
+                                <a asp-controller="Mangas" asp-action="MangaDetail">Yaoyorozu</a>
+                            </div>
+                            <div class="p-view">
+                                <span class="price">50000<span class="cur">₫</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box" style="float: left;width: 33.33%;margin-top:2%;">
+                <div class="item">
+                    <div class="text-center">
+                        <div class="product-entry">
+                            <div class="product-img">
+                                <img src="~/images/Blame.jpg" width="250" height="300" alt="Blame" />
+                                <p class="tag"><span class="new">New</span></p>
+                                <div class="cart">
+                                    <p>
+                                        <span class="addtocart"><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></span>
+                                        <span><a href="product-detail.html"><i class="fas fa-eye"></i></a></span>
+                                        <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="t-view">
+                                <a asp-controller="Mangas" asp-action="MangaDetail">Blame</a>
+                            </div>
+                            <div class="p-view">
+                                <span class="price">50000<span class="cur">₫</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box" style="float: left;width: 33.33%;margin-top:2%;">
+                <div class="item">
+                    <div class="text-center">
+                        <div class="product-entry">
+                            <div class="product-img">
+                                <img src="~/images/DungeonMeshi.jpg" width="250" height="300" alt="Dungeon Meshi" />
+                                <p class="tag"><span class="new">New</span></p>
+                                <div class="cart">
+                                    <p>
+                                        <span class="addtocart"><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></span>
+                                        <span><a href="product-detail.html"><i class="fas fa-eye"></i></a></span>
+                                        <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="t-view">
+                                <a asp-controller="Mangas" asp-action="MangaDetail">Dungeon Meshi (Dungeon Food)</a>
+                            </div>
+                            <div class="p-view">
+                                <span class="price">50000<span class="cur">₫</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box" style="float: left;width: 33.33%;margin-top:2%;">
+                <div class="item">
+                    <div class="text-center">
+                        <div class="product-entry">
+                            <div class="product-img">
+                                <img src="~/images/Onisan.jpg" width="250" height="300" alt="Onisan, Dochira" />
+                                <p class="tag"><span class="new">New</span></p>
+                                <div class="cart">
+                                    <p>
+                                        <span class="addtocart"><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></span>
+                                        <span><a href="product-detail.html"><i class="fas fa-eye"></i></a></span>
+                                        <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="t-view">
+                                <a asp-controller="Mangas" asp-action="MangaDetail">Onisan, Dochira (An Ogre, Who?)</a>
+                            </div>
+                            <div class="p-view">
+                                <span class="price">50000<span class="cur">₫</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box" style="float: left;width: 33.33%;margin-top:2%;">
+                <div class="item">
+                    <div class="text-center">
+                        <div class="product-entry">
+                            <div class="product-img">
+                                <img src="~/images/GyousekinoKuni4.jpg" width="250" height="300" alt="Gyouseki no Kuni 4" />
+                                <p class="tag"><span class="new">New</span></p>
+                                <div class="cart">
+                                    <p>
+                                        <span class="addtocart"><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></span>
+                                        <span><a href="product-detail.html"><i class="fas fa-eye"></i></a></span>
+                                        <span><a href="#"><i class="fas fa-heart"></i></a></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="t-view">
+                                <a asp-controller="Mangas" asp-action="MangaDetail">Gyouseki no Kuni 4 (Jewel Country)</a>
+                            </div>
+                            <div class="p-view">
+                                <span class="price">50000<span class="cur">₫</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        </div>
+    </div>
+</div>

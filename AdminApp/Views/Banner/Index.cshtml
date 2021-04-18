@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ViewModels.Catalog.Banner.BannerViewModel>
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h1 class="mt-4">Danh sách banner</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Danh sách banner</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <form asp-action="Index" method="get">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" placeholder="Enter thông tin banner" />
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary">Tìm</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-6 col-xs-12">
+                    <a class="btn btn-success float-right" asp-action="Create" asp-controller="Banner">Tạo mới</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                @if (ViewBag.SuccessMsg != null)
+                {
+                    <div id="msgAlert" class="alert alert-success" role="alert">
+                        @ViewBag.SuccessMsg
+                    </div>
+                }
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Hinh)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Anhien)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+
+                                    <img width="140" height="90" src="@(Configuration["BaseAddress"] + "/user-content/" + item.Hinh)" />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Anhien)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Update", new { bannerId = item.Id }) |
+                                    @Html.ActionLink("Details", "Details", new { idBanner = item.Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { idBanner = item.Id })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

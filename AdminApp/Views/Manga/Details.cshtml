@@ -1,0 +1,119 @@
+﻿@model ViewModels.Catalog.Mangas.MangaViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#rtxContent'), {
+                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(err => {
+                console.error(err.stack);
+            });
+    </script>
+}
+<div class="container-fluid">
+    <h1 class="mt-4">Chi tiết</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Chi tiết</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <a class="btn btn-success" asp-action="Index" asp-controller="Manga">Về danh sách</a>
+        </div>
+
+        <div class="card-body">
+            <div class="col-md-12">
+                <dl class="row">
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.mangaId)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.mangaId)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Ten)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.Ten)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Gia)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.Gia)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Giagoc)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.Giagoc)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Anhien)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.Anhien)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.SoLuong)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.SoLuong)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.TinhtrangMn)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.TinhtrangMn)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Mota)
+                    </dt>
+                    <dd class="col-sm-7">
+                        <textarea id="rtxContent">@Html.DisplayFor(model => model.Mota)</textarea>
+
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Tacgia)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.Tacgia)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.NamXB)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.NamXB)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Sotrang)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.Sotrang)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.TheloaiId)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.TheloaiId)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.UserId)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.UserId)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>

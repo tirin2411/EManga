@@ -1,0 +1,75 @@
+﻿@model ViewModels.Catalog.Tintuc.TintucCreateRequest
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#rtxContent'), {
+                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(err => {
+                console.error(err.stack);
+            });
+    </script>
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Tạo mới tin tức</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Tạo mới tin tức</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <a class="btn btn-success" asp-action="Index" asp-controller="News">Về danh sách</a>
+        </div>
+
+        <div class="card-body">
+            <div class="col-md-12">
+                <form asp-action="Create" enctype="multipart/form-data" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="TieuDe" class="control-label"></label>
+                        <input asp-for="TieuDe" class="form-control" />
+                        <span asp-validation-for="TieuDe" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Meta" class="control-label"></label>
+                        <input asp-for="Meta" class="form-control" />
+                        <span asp-validation-for="Meta" class="text-danger"></span>
+                    </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Anhien" /> @Html.DisplayNameFor(model => model.Anhien)
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NoiDungTomTat" class="control-label"></label>
+                        <textarea asp-for="NoiDungTomTat" class="form-control"></textarea>
+                        <span asp-validation-for="NoiDungTomTat" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NoiDung" class="control-label"></label>
+                        <textarea asp-for="NoiDung" id="rtxContent" class="form-control"></textarea>
+                        <span asp-validation-for="NoiDung" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Hinh" class="control-label"></label>
+                        <input type="file" asp-for="Hinh" class="form-control" />
+                        <span asp-validation-for="Hinh" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

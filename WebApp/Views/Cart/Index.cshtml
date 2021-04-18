@@ -1,0 +1,119 @@
+﻿@using ViewModels.Catalog.Cart
+@model List<CartItem>
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+
+@{
+    ViewData["Title"] = "Giỏ hàng của bạn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts{
+    <script src="~/js/quantity.js"></script>
+    <script>
+        var cartController = new CartController();
+        cartController.initialize();
+    </script>
+}
+
+
+@if (Model == null || Model.Count == 0)
+{
+    <div class="leftcolumncart">
+        <div class="colorlib-shop">
+            <p class="text-dark text-center mt-3">
+                @ViewBag.Thongbao
+            </p>
+        </div>
+    </div>
+}
+else
+{
+    <div class="leftcolumncart">
+        <div class="colorlib-shop">
+
+            <div class="card">
+                <div class="product-name">
+                    <div class="one-forth text-center">
+                        <span>Sản phẩm</span>
+                    </div>
+                    <div class="one-eight text-center">
+                        <span>Giá</span>
+                    </div>
+                    <div class="one-eight text-center">
+                        <span>Số lượng</span>
+                    </div>
+                    <div class="one-eight text-center">
+                        <span>Thành tiền</span>
+                    </div>
+                    <div class="one-eight text-center">
+                        <span></span>
+                    </div>
+                </div>
+
+                @foreach (CartItem i in Model)
+                {
+                    <div class="product-cart" style="padding: 10px;">
+                        <div class="one-forth">
+                            <div class="product-img" style="background-image: url('@(Configuration["BaseAddress"] + "/user-content/" + i.Hinh)');">
+                            </div>
+                            <div class="display-tc">
+                                <h3>@i.TenManga</h3>
+                            </div>
+                        </div>
+                        <div class="one-eight text-center">
+                            <div class="display-tc">
+                                <span class="price">@i.Gia.ToString("#,##0").Replace(',', '.')<span class="cur">₫</span></span>
+                            </div>
+                        </div>
+                        <div class="one-eight text-center">
+                            <div class="display-tc">
+                                <input class="minus button is-form" style="float:left" type="button" data-id="@i.MangaId" value="-">
+                                <input style="float:left" type="text" id="quantity_@i.MangaId" name="quantity" class="form-control input-number text-center" value="@i.SoLuong" min="1" max="100">
+                                <input class="btn-plus button is-form" style="float:left" type="button" data-id="@i.MangaId" value="+">
+                            </div>
+                        </div>
+                        <div class="one-eight text-center">
+                            <div class="display-tc">
+                                <span class="price">@i.ThanhTien.ToString("#,##0").Replace(',', '.')<span class="cur">₫</span></span>
+                            </div>
+                        </div>
+                        <div class="one-eight text-center">
+                            <div class="display-tc">
+                                <a href="@Url.Action("XoaKhoiGio",new { magaId = i.MangaId})" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');" class="btn btn-danger btn-sm">X</a>
+                                @*<button type="submit" class="btn btn-danger" asp-action="Remove" asp-controller="Cart" asp-route-id="@i.MangaId"><i class="fas fa-trash-alt"></i></button>*@
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+           
+        </div>
+    </div>
+
+    <div class="rightcolumncart">
+        
+        <partial name="_DiscountBox" />
+        <div class="card" style="padding: 10px;">
+            <div class="text-center">
+                <div class="total">
+                    <div class="sub">
+                        <p><span>Tổng tiền: </span> <span>@Model.Sum(m => m.ThanhTien).ToString("#,##0").Replace(',', '.')<span class="cur">₫</span></span></p>
+                        @*<p><span>Phí vận chuyển:</span> <span>Miễn phí<span class="cur"></span></span></p>*@
+                        <p><span>Khuyến mãi:</span> <span> 00.00<span class="cur">₫</span></span></p>
+                    </div>
+
+                    <hr />
+                    <div class="grand-total">
+                        <p><span><strong>Tổng cộng: </strong></span> <span>@Model.Sum(m => m.ThanhTien).ToString("#,##0").Replace(',', '.') <span class="cur">₫</span></span></p>
+                    </div>
+                    <br />
+                    <div class="grand-total">
+                        <a class="btn btn-primary" type="button" href="/dat-hang">Đặt hàng</a>
+                        @* <button class="btn btn-primary" type="button" asp-action="Payment" asp-controller="Orders">Đặt hàng</button>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

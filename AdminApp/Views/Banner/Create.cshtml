@@ -1,0 +1,60 @@
+﻿@model ViewModels.Catalog.Banner.BannerCreateRequest
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Thêm mới sản phẩm</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Thêm mới sản phẩm</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <a class="btn btn-success" asp-action="Index" asp-controller="Banner">Về danh sách</a>
+        </div>
+
+        <div class="card-body">
+            <div class="col-md-12">
+                <form asp-action="Create" enctype="multipart/form-data" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="ImageFile" class="control-label"></label>
+                        <input type="file" asp-for="ImageFile" class="form-control" />
+                        <span asp-validation-for="ImageFile" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ThuTu" class="control-label"></label>
+                        <input asp-for="ThuTu" class="form-control" />
+                        <span asp-validation-for="ThuTu" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Tieude" class="control-label"></label>
+                        <input asp-for="Tieude" class="form-control" />
+                        <span asp-validation-for="Tieude" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Noidung" class="control-label"></label>
+                        <input asp-for="Noidung" class="form-control" />
+                        <span asp-validation-for="Noidung" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Meta" class="control-label"></label>
+                        <input asp-for="Meta" class="form-control" />
+                        <span asp-validation-for="Meta" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Anhien" class="control-label"></label>
+                        <input asp-for="Anhien" class="form-control" />
+                        <span asp-validation-for="Anhien" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

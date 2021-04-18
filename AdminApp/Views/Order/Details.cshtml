@@ -1,0 +1,76 @@
+﻿@model List<ViewModels.Catalog.Order.OrderViewModel>
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h1 class="mt-4">Chi tiết</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Chi tiết</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <a class="btn btn-success" asp-action="Index" asp-controller="Order">Về danh sách</a>
+        </div>
+
+        <div class="card-body">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        MangaId
+                                    </th>
+                                    <th>
+                                        Tên manga
+                                    </th>
+                                    <th>
+                                        Ảnh
+                                    </th>
+                                    <th>
+                                        Giá
+                                    </th>
+                                    <th>
+                                        Soluongdat
+                                    </th>
+                                    <th>
+                                        Tongtien
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MangaId)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TenMn)
+                                        </td>
+                                        <td>
+                                            <img width="60" height="90" src="@(Configuration["BaseAddress"] + "/user-content/" + item.LinkAnh)" />
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Gia)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Soluongdat)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Tongtien)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

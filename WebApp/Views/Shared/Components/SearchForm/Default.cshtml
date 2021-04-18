@@ -1,0 +1,18 @@
+﻿<div class="col-md-5 col-xs-12">
+    <form asp-action="Index" asp-controller="Mangas" method="get">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <select name="CategoryId" asp-items="@ViewBag.Categories" class="form-control col-md-3">
+                        <option>--Thể loại--</option>
+                    </select>
+                    <input class="form-control" value="@ViewBag.Keyword" name="keyword" id="txtkeyword" type="text" placeholder="Tìm truyện..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '@ViewBag.Keyword';}" />
+
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

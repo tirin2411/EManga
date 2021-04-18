@@ -1,0 +1,10 @@
+﻿@using ViewModels.Catalog.Theloai
+@model List<TheloaiViewModel>
+
+<div class="card">
+    <h1 class="p-2" style="background-color:lawngreen; text-align:center;">Thể Loại</h1>
+    @foreach (var item in Model)
+    {
+        <div>@item.TenTL</div>
+    }
+</div>
